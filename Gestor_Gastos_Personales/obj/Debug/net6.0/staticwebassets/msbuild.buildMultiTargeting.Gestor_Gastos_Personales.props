@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\Gestor_Gastos_Personales.props" />
+</Project>
