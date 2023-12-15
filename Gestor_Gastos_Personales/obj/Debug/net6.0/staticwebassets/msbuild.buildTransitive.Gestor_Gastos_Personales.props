@@ -1,3 +1,0 @@
-﻿<Project>
-  <Import Project="..\buildMultiTargeting\Gestor_Gastos_Personales.props" />
-</Project>
