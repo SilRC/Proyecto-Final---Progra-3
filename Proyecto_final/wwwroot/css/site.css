@@ -18,5 +18,11 @@ html {
 }
 
 body {
-  margin-bottom: 60px;
+    background-color: #A5A7AA;
+    margin-bottom: 60px;
+}
+
+.cerrar-sesion {
+    color: #ff0000; 
+    font-weight: bold; 
 }

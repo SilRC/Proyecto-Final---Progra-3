@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Maradiaga\\Desktop\\UAM\\Actuales\\Progra 3\\Silvana\\Silvana\\Proyecto_final\\Proyecto_final.csproj": {}
+    "C:\\Users\\Maradiaga\\Downloads\\Silvana\\Silvana\\Proyecto_final\\Proyecto_final.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Maradiaga\\Desktop\\UAM\\Actuales\\Progra 3\\Silvana\\Silvana\\Proyecto_final\\Proyecto_final.csproj": {
+    "C:\\Users\\Maradiaga\\Downloads\\Silvana\\Silvana\\Proyecto_final\\Proyecto_final.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Maradiaga\\Desktop\\UAM\\Actuales\\Progra 3\\Silvana\\Silvana\\Proyecto_final\\Proyecto_final.csproj",
+        "projectUniqueName": "C:\\Users\\Maradiaga\\Downloads\\Silvana\\Silvana\\Proyecto_final\\Proyecto_final.csproj",
         "projectName": "Proyecto_final",
-        "projectPath": "C:\\Users\\Maradiaga\\Desktop\\UAM\\Actuales\\Progra 3\\Silvana\\Silvana\\Proyecto_final\\Proyecto_final.csproj",
+        "projectPath": "C:\\Users\\Maradiaga\\Downloads\\Silvana\\Silvana\\Proyecto_final\\Proyecto_final.csproj",
         "packagesPath": "C:\\Users\\Maradiaga\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Maradiaga\\Desktop\\UAM\\Actuales\\Progra 3\\Silvana\\Silvana\\Proyecto_final\\obj\\",
+        "outputPath": "C:\\Users\\Maradiaga\\Downloads\\Silvana\\Silvana\\Proyecto_final\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Maradiaga\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -57,6 +57,10 @@
             "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
               "target": "Package",
               "version": "[8.0.0, )"
+            },
+            "bootstrap": {
+              "target": "Package",
+              "version": "[5.3.2, )"
             }
           },
           "imports": [
