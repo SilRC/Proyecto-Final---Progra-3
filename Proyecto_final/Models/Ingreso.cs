@@ -13,7 +13,7 @@ public partial class Ingreso
 
     public decimal Monto { get; set; }
 
-    public DateOnly FechaIngreso { get; set; }
+    public DateTime? FechaIngreso { get; set; }
 
     public virtual Cuenta? Cuenta { get; set; }
 }

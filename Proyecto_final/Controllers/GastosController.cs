@@ -11,7 +11,8 @@ namespace Proyecto_final.Controllers
 {
     public class GastosController : Controller
     {
-        private readonly ProyectoFinalDbContext _context;
+       
+    private readonly ProyectoFinalDbContext _context;
 
         public GastosController(ProyectoFinalDbContext context)
         {

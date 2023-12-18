@@ -15,7 +15,7 @@ public partial class Gasto
 
     public decimal Monto { get; set; }
 
-    public DateOnly FechaGasto { get; set; }
+    public DateTime? FechaGasto { get; set; }
 
     public virtual Categoria? Categoria { get; set; }
 
