@@ -152,7 +152,7 @@ namespace Proyecto_final.Controllers
                     };
 
                     // Devolver la vista parcial con los resultados
-                    return PartialView("Resultado del Informe", resultados);
+                    return PartialView("ResultadoInforme", resultados);
                 }
 
                 else

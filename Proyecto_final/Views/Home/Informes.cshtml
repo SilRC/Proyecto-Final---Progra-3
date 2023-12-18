@@ -1,10 +1,9 @@
 ﻿@model Proyecto_final.Models.Informes
-
 @{
     ViewData["Title"] = "Informes";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
+<link rel="stylesheet" href="~/css/Diseño.css" />
 <h2>Informes</h2>
 
 @using (Html.BeginForm("GenerarInforme", "Home", FormMethod.Post))

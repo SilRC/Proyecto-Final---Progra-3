@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "T7cS+8KGAYe/8w5Nk+uVw4/5420wPjrbcZaKH8+qTGc=",
+  "Hash": "YjM3m0scBcry65dHiYz/RgKAcbkonqOMqbDnKV+LnSk=",
   "Source": "Proyecto_final",
   "BasePath": "_content/Proyecto_final",
   "Mode": "Default",
@@ -91,6 +91,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "C:\\Users\\Maradiaga\\Downloads\\SilvanaV3\\Silvana\\Proyecto_final\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\Proyecto_final.bundle.scp.css"
+    },
+    {
+      "Identity": "C:\\Users\\Maradiaga\\Downloads\\SilvanaV3\\Silvana\\Proyecto_final\\wwwroot\\css\\Diseño.css",
+      "SourceId": "Proyecto_final",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Maradiaga\\Downloads\\SilvanaV3\\Silvana\\Proyecto_final\\wwwroot\\",
+      "BasePath": "_content/Proyecto_final",
+      "RelativePath": "css/Diseño.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\Diseño.css"
     },
     {
       "Identity": "C:\\Users\\Maradiaga\\Downloads\\SilvanaV3\\Silvana\\Proyecto_final\\wwwroot\\css\\Login.css",

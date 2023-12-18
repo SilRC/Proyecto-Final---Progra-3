@@ -1,0 +1,51 @@
+﻿body {
+    font-family: Arial, sans-serif;
+    color: #34DC54;
+    margin: 0;
+    padding: 0;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+
+}
+
+h1{
+    font-weight: bold;
+}
+
+
+label {
+    color: #34DC54;
+ }
+
+input {
+    border: 1px solid #ccc;
+    background-color: #f2f2f2;
+    color: #34DC54;
+    font-size: 14px;
+    font-family: 'Arial', sans-serif;
+    margin-bottom: 10px;
+}
+
+header {
+    background-color: #000000;
+    padding: 10px;
+    text-align: center;
+}
+header img {
+    max-width: 100%;
+    height: auto;
+}
+
+table {
+    border-collapse: collapse;
+    }
+
+th,td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: center;
+    color: white;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+}
