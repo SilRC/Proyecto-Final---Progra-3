@@ -1,0 +1,36 @@
+﻿@model Proyecto_final.Models.ResultadoInforme
+
+<div>
+    @Html.ActionLink("Regresar a la pagina de inicio", "Index", "Home", null, new { @class = "btn btn-primary" })
+</div>
+
+<br />
+<br />
+
+<div id="cuentas">
+    <h2>Cuentas</h2>
+    <br />
+    @Html.Raw(Model.InformacionCuentas)
+    <br />
+</div>
+
+<div id="ingresos">
+    <h2>Ingresos</h2>
+    <br />
+    @Html.Raw(Model.InformacionIngresos)
+    <br />
+</div>
+
+<div id="gastos">
+    <h2>Gastos</h2>
+    <br />
+    @Html.Raw(Model.InformacionGastos)
+    <br />
+</div>
+
+<div id="estado">
+    <h2>Estado</h2>
+    <br />
+    @Html.Raw(Model.InformacionEstado)
+    <br />
+</div>

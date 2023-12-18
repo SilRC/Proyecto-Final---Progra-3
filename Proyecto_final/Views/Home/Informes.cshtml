@@ -1,19 +1,36 @@
-﻿@{
+﻿@model Proyecto_final.Models.Informes
+
+@{
     ViewData["Title"] = "Informes";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewData["Title"]</title>
-</head>
-<body>
-    <h2>Informes</h2>
-    <p>Aquí puedes visualizar tus informes:</p>
+<h2>Informes</h2>
 
-   
+@using (Html.BeginForm("GenerarInforme", "Home", FormMethod.Post))
+{
+    <div>
+        <label for="UserId">Seleccione un usuario:</label>
+        @Html.DropDownListFor(m => m.UserId, (SelectList)ViewBag.Usuarios, "Seleccione un usuario", new { @class = "form-control" })
+    </div>
 
-</body>
-</html>
+    <div>
+        <label>Mostrar por:</label>
+        <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="Seleccion" id="porMes" value="Mes" checked>
+            <label class="form-check-label" for="porMes">Por Mes</label>
+        </div>
+        <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="Seleccion" id="porAnio" value="Anio">
+            <label class="form-check-label" for="porAnio">Por Año</label>
+        </div>
+    </div>
+
+    <div>
+        <input type="submit" value="Generar Informe" class="btn btn-primary" />
+    </div>
+}
+
+<div id="resultados">
+    <!-- Los resultados se mostrarán aquí -->
+</div>

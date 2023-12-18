@@ -1,7 +1,9 @@
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Proyecto_final.Models;
 using System.Diagnostics;
+using System.Linq;
 
 namespace Proyecto_final.Controllers
 {
@@ -86,10 +88,85 @@ namespace Proyecto_final.Controllers
             return View();
         }
 
+        
         public IActionResult Informes()
         {
+            var usuarios = _context.Usuarios.ToList(); // Obtener la lista de usuarios
+
+            ViewBag.Usuarios = new SelectList(usuarios, "UserId", "NombreUsuario");
+
             return View();
         }
+
+        [HttpPost]
+        public IActionResult GenerarInforme(Informes model)
+        {
+            if (ModelState.IsValid)
+            {
+                // Aquí implementa la lógica para generar el informe según los parámetros recibidos en el modelo.
+                // Puedes acceder a model.UserId, model.Seleccion, etc.
+
+                // Por ejemplo, consulta la base de datos para obtener información relacionada con el usuario y la selección.
+                var usuario = _context.Usuarios.FirstOrDefault(u => u.UserId == model.UserId);
+
+                if (usuario != null)
+                {
+                    // Obtener cuentas del usuario
+                    var cuentas = _context.Cuentas
+                        .Where(c => c.UserId == usuario.UserId)
+                        .ToList();
+
+                    // Obtener ingresos del usuario
+                    var ingresos = _context.Ingresos
+                        .Include(i => i.Cuenta)
+                        .Where(i => cuentas.Select(c => c.CuentaId).ToList().Contains((int)i.CuentaId))
+                        .ToList();
+
+                    // Obtener gastos del usuario
+                    var gastos = _context.Gastos
+                        .Include(g => g.Cuenta)
+                        .Where(g => cuentas.Select(c => c.CuentaId).ToList().Contains((int)g.CuentaId))
+                        .ToList();
+
+                    var informacionCuentas = $"Número de cuentas: {cuentas.Count} <br><br>";
+                    foreach (var cuenta in cuentas)
+                    {
+                        informacionCuentas += $"Cuenta ID: {cuenta.CuentaId}, Nombre: {cuenta.NombreCuenta}, Saldo Inicial: {cuenta.SaldoInicial} <br>";
+                    }
+
+
+                    // Calcular el total de ingresos y gastos
+                    decimal totalIngresos = ingresos.Sum(i => i.Monto);
+                    decimal totalGastos = gastos.Sum(g => g.Monto);
+
+                    // Calcular el estado (ingresos - gastos)
+                    decimal estado = totalIngresos - totalGastos;
+
+                    // Simular la construcción de la información para mostrar en la vista
+                    var resultados = new ResultadoInforme
+                    {
+                        InformacionCuentas = informacionCuentas,
+                        InformacionIngresos = $"Total de ingresos: {totalIngresos:C}",
+                        InformacionGastos = $"Total de gastos: {totalGastos:C}",
+                        InformacionEstado = $"Estado: {estado:C}"
+                    };
+
+                    // Devolver la vista parcial con los resultados
+                    return PartialView("Resultado del Informe", resultados);
+                }
+
+                else
+                {
+                    // Manejar el caso en que no se encuentre el usuario.
+                    ModelState.AddModelError("UserId", "Usuario no encontrado");
+                }
+            }
+
+            // Si el modelo no es válido, devuelve la vista con errores.
+            return View("Informes", model);
+        }
+
+
 
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
