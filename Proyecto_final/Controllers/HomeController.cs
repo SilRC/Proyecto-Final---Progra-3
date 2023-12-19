@@ -13,11 +13,14 @@ namespace Proyecto_final.Controllers
 
         private readonly ILogger<HomeController> _logger;
 
-       
-        public HomeController(ProyectoFinalDbContext context, ILogger<HomeController> logger)
+        private readonly IHttpContextAccessor _httpContextAccessor;
+
+
+        public HomeController(ProyectoFinalDbContext context, ILogger<HomeController> logger, IHttpContextAccessor httpContextAccessor)
         {
             _context = context;
             _logger = logger;
+            _httpContextAccessor = httpContextAccessor;
         }
 
         public IActionResult Index()
@@ -46,6 +49,18 @@ namespace Proyecto_final.Controllers
 
                 if (usuario != null)
                 {
+                    if (model.NombreUsuario == "admin")
+                    {
+                        _httpContextAccessor.HttpContext.Session.SetString("admin", "True");
+                    }
+                    else
+                    {
+                        _httpContextAccessor.HttpContext.Session.SetString("admin", "False");
+                    }
+
+                    _httpContextAccessor.HttpContext.Session.SetString("name", usuario.NombreUsuario);
+                    _httpContextAccessor.HttpContext.Session.SetInt32("UserId", usuario.UserId);
+
                     // Usuario autenticado, redirige a la página de inicio
                     return RedirectToAction("Index", "Home");
                 }
@@ -70,21 +85,15 @@ namespace Proyecto_final.Controllers
         {
             if (ModelState.IsValid)
             {
-                // Aquí deberías guardar el usuario en la base de datos
-                // Puedes utilizar Entity Framework Core o cualquier otro ORM
-
-                // Por ejemplo, si estás utilizando EF Core:
-                // dbContext.Usuarios.Add(usuario);
-                // dbContext.SaveChanges();
-
+                
                 _context.Add(usuario);
                 await _context.SaveChangesAsync();
 
-                // Redirige a la página de inicio de sesión o cualquier otra página
+                // Redirige a la página de inicio de sesión
                 return RedirectToAction("Login", "Home");
             }
 
-            // Si el modelo no es válido, vuelve a la vista de registro con errores
+            // Si el modelo no es válido, vuelve a la vista de registro
             return View();
         }
 
@@ -103,10 +112,6 @@ namespace Proyecto_final.Controllers
         {
             if (ModelState.IsValid)
             {
-                // Aquí implementa la lógica para generar el informe según los parámetros recibidos en el modelo.
-                // Puedes acceder a model.UserId, model.Seleccion, etc.
-
-                // Por ejemplo, consulta la base de datos para obtener información relacionada con el usuario y la selección.
                 var usuario = _context.Usuarios.FirstOrDefault(u => u.UserId == model.UserId);
 
                 if (usuario != null)

@@ -21,9 +21,22 @@ namespace Proyecto_final.Controllers
         // GET: Cuentas
         public async Task<IActionResult> Index()
         {
-            var proyectoFinalDbContext = _context.Cuentas.Include(c => c.User);
-            return View(await proyectoFinalDbContext.ToListAsync());
+            if ((string)HttpContext.Session.GetString("admin") == "True")
+            {
+                // Si el usuario es "admin", obtén todas las cuentas
+                return View(await _context.Cuentas.Include(c => c.User).ToListAsync());
+            }
+            else
+            {
+                // Si el usuario no es "admin", obtén solo las cuentas del usuario logueado
+                int loggedUserId = HttpContext.Session.GetInt32("UserId") ?? 0;
+                var cuentasDelUsuario = await _context.Cuentas.Include(c => c.User)
+                                                               .Where(c => c.UserId == loggedUserId)
+                                                               .ToListAsync();
+                return View(cuentasDelUsuario);
+            }
         }
+
 
         // GET: Cuentas/Details/5
         public async Task<IActionResult> Details(int? id)
@@ -161,3 +174,15 @@ namespace Proyecto_final.Controllers
         }
     }
 }
+
+
+/*
+            if ((string)HttpContext.Session.GetString("admin") == "True")
+            {
+
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
+ */

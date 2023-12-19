@@ -1,4 +1,6 @@
 ﻿@model Proyecto_final.Models.Informes
+@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
+
 @{
     ViewData["Title"] = "Informes";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -10,8 +12,26 @@
 {
     <div>
         <label for="UserId">Seleccione un usuario:</label>
-        @Html.DropDownListFor(m => m.UserId, (SelectList)ViewBag.Usuarios, "Seleccione un usuario", new { @class = "form-control" })
+        @if ((string)HttpContextAccessor.HttpContext.Session.GetString("admin") == "True")
+        {
+            @Html.DropDownListFor(m => m.UserId, (SelectList)ViewBag.Usuarios, "Seleccione un usuario", new { @class = "form-control" })
+        }
+        else
+        {
+            @Html.DropDownListFor(m => m.UserId, (SelectList)ViewBag.Usuarios, (string)HttpContextAccessor.HttpContext.Session.GetString("name"), new { @class = "form-control", @disabled = "disabled" })
+
+            @if (HttpContextAccessor.HttpContext.Session.GetInt32("UserId").HasValue)
+            {
+                <input type="hidden" id="UserId" name="UserId" value="@HttpContextAccessor.HttpContext.Session.GetInt32("UserId").Value" />
+            }
+        }
     </div>
+
+
+       
+    
+
+
 
     <div>
         <label>Mostrar por:</label>

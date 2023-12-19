@@ -22,8 +22,23 @@ namespace Proyecto_final.Controllers
         // GET: Gastoes
         public async Task<IActionResult> Index()
         {
-            var proyectoFinalDbContext = _context.Gastos.Include(g => g.Categoria).Include(g => g.Cuenta);
-            return View(await proyectoFinalDbContext.ToListAsync());
+            // Verificar si el usuario es "admin" basado en la sesión
+            if ((string)HttpContext.Session.GetString("admin") == "True")
+            {
+                // Si el usuario es "admin", obtén todos los ingresos
+                return View(await _context.Gastos.Include(i => i.Cuenta).ToListAsync());
+            }
+            else
+            {
+                // Si el usuario no es "admin", obtén solo los ingresos asociados al usuario logueado
+                int loggedUserId = HttpContext.Session.GetInt32("UserId") ?? 0;
+                var gastosDelUsuario = await _context.Gastos.Include(i => i.Cuenta)
+                                                 .Where(i => i.Cuenta.UserId == loggedUserId)
+                                                 .ToListAsync();
+
+
+                return View(gastosDelUsuario);
+            }
         }
 
         // GET: Gastoes/Details/5

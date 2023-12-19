@@ -21,12 +21,27 @@ namespace Proyecto_final.Controllers
         // GET: Ingresoes
         public async Task<IActionResult> Index()
         {
-            var proyectoFinalDbContext = _context.Ingresos.Include(i => i.Cuenta);
-            return View(await proyectoFinalDbContext.ToListAsync());
+            // Verificar si el usuario es "admin" basado en la sesión
+            if ((string)HttpContext.Session.GetString("admin") == "True")
+            {
+                // Si el usuario es "admin", obtén todos los ingresos
+                return View(await _context.Ingresos.Include(i => i.Cuenta).ToListAsync());
+            }
+            else
+            {
+                // Si el usuario no es "admin", obtén solo los ingresos asociados al usuario logueado
+                int loggedUserId = HttpContext.Session.GetInt32("UserId") ?? 0;
+                var ingresosDelUsuario = await _context.Ingresos.Include(i => i.Cuenta)
+                                                 .Where(i => i.Cuenta.UserId == loggedUserId)
+                                                 .ToListAsync();
+
+
+                return View(ingresosDelUsuario);
+            }
         }
 
-        // GET: Ingresoes/Details/5
-        public async Task<IActionResult> Details(int? id)
+            // GET: Ingresoes/Details/5
+            public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
             {

@@ -21,8 +21,30 @@ namespace Proyecto_final.Controllers
         // GET: Usuarios
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Usuarios.ToListAsync());
+            if ((string)HttpContext.Session.GetString("admin") == "True")
+            {
+                return View(await _context.Usuarios.ToListAsync());
+            }
+            else
+            {
+                int? userId = HttpContext.Session.GetInt32("UserId");
+                if (!userId.HasValue)
+                {
+                    // Si no hay un UserId en la sesión, redirige a una página de error o maneja el caso adecuadamente.
+                    return RedirectToAction("Error", "Home");
+                }
+
+                var usuario = await _context.Usuarios.FirstOrDefaultAsync(u => u.UserId == userId.Value);
+                if (usuario == null)
+                {
+                    // Si el usuario no se encuentra en la base de datos, maneja el caso adecuadamente.
+                    return RedirectToAction("Error", "Home");
+                }
+
+                return View(new List<Usuario> { usuario });
+            }
         }
+
 
         // GET: Usuarios/Details/5
         public async Task<IActionResult> Details(int? id)
@@ -45,7 +67,14 @@ namespace Proyecto_final.Controllers
         // GET: Usuarios/Create
         public IActionResult Create()
         {
-            return View();
+            if ((string)HttpContext.Session.GetString("admin") == "True")
+            {
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
         }
 
         // POST: Usuarios/Create
@@ -76,6 +105,8 @@ namespace Proyecto_final.Controllers
                 return NotFound();
             }
             return View(usuario);
+
+
         }
 
         // POST: Usuarios/Edit/5
@@ -119,14 +150,24 @@ namespace Proyecto_final.Controllers
                 return NotFound();
             }
 
-            var usuario = await _context.Usuarios
-                .FirstOrDefaultAsync(m => m.UserId == id);
-            if (usuario == null)
+
+            if ((string)HttpContext.Session.GetString("admin") == "True")
             {
-                return NotFound();
+                var usuario = await _context.Usuarios
+                .FirstOrDefaultAsync(m => m.UserId == id);
+                if (usuario == null)
+                {
+                    return NotFound();
+                }
+
+                return View(usuario);
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
             }
 
-            return View(usuario);
+            
         }
 
         // POST: Usuarios/Delete/5
@@ -134,6 +175,7 @@ namespace Proyecto_final.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
+
             var usuario = await _context.Usuarios.FindAsync(id);
             if (usuario != null)
             {
@@ -150,3 +192,17 @@ namespace Proyecto_final.Controllers
         }
     }
 }
+
+
+
+
+/*
+            if ((string)HttpContext.Session.GetString("admin") == "True")
+            {
+
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
+ */

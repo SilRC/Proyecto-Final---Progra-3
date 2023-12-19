@@ -1,7 +1,12 @@
 ﻿@model Proyecto_final.Models.Cuenta
+@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
+
 <link rel="stylesheet" href="~/css/Diseño.css" />
+
 @{
     ViewData["Title"] = "Create";
+    bool isAdmin = (string)HttpContextAccessor.HttpContext.Session.GetString("admin") == "True";
+    int loggedUserId = HttpContextAccessor.HttpContext.Session.GetInt32("UserId") ?? 0;
 }
 
 <h1>Create</h1>
@@ -12,10 +17,22 @@
     <div class="col-md-4">
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="UserId" class="control-label"></label>
-                <select asp-for="UserId" class ="form-control" asp-items="ViewBag.UserId"></select>
-            </div>
+
+            @if (isAdmin)
+            {
+                <div class="form-group">
+                    <label asp-for="UserId" class="control-label"></label>
+                    <select asp-for="UserId" class="form-control" asp-items="ViewBag.UserId"></select>
+                </div>
+            }
+            else
+            {
+                <div class="form-group">
+                    <label asp-for="UserId" class="control-label"></label>
+                    <input asp-for="UserId" class="form-control" value="@loggedUserId" readonly />
+                </div>
+            }
+
             <div class="form-group">
                 <label asp-for="NombreCuenta" class="control-label"></label>
                 <input asp-for="NombreCuenta" class="form-control" />
