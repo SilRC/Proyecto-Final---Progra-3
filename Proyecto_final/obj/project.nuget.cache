@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "ANpC1b9LHdn0mnFlOe4xxcOSn4G6V7F5x+YWA6RIKO5573/S5vDce9Vvu55kHbJVRmzO7FON8y0He5enF4t+9A==",
+  "dgSpecHash": "oRiSBe7FH0qTwwB4F96VEoCqJPBZx+3CKZugFqHoClJ6jct2fx/CEGrtXHOvcA6YNMgkANoQdM/1JXs1gRqDcg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Maradiaga\\Downloads\\Proyecto-Final---Progra-3\\Proyecto-Final---Progra-3\\Proyecto_final\\Proyecto_final.csproj",
+  "projectFilePath": "C:\\Users\\Maradiaga\\Desktop\\UAM\\Actuales\\Progra 3\\Proyecto\\Proyecto-Final---Progra-3\\Proyecto_final\\Proyecto_final.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Maradiaga\\.nuget\\packages\\azure.core\\1.25.0\\azure.core.1.25.0.nupkg.sha512",
     "C:\\Users\\Maradiaga\\.nuget\\packages\\azure.identity\\1.7.0\\azure.identity.1.7.0.nupkg.sha512",

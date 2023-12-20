@@ -7998,11 +7998,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Maradiaga\\Downloads\\Proyecto-Final---Progra-3\\Proyecto-Final---Progra-3\\Proyecto_final\\Proyecto_final.csproj",
+      "projectUniqueName": "C:\\Users\\Maradiaga\\Desktop\\UAM\\Actuales\\Progra 3\\Proyecto\\Proyecto-Final---Progra-3\\Proyecto_final\\Proyecto_final.csproj",
       "projectName": "Proyecto_final",
-      "projectPath": "C:\\Users\\Maradiaga\\Downloads\\Proyecto-Final---Progra-3\\Proyecto-Final---Progra-3\\Proyecto_final\\Proyecto_final.csproj",
+      "projectPath": "C:\\Users\\Maradiaga\\Desktop\\UAM\\Actuales\\Progra 3\\Proyecto\\Proyecto-Final---Progra-3\\Proyecto_final\\Proyecto_final.csproj",
       "packagesPath": "C:\\Users\\Maradiaga\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Maradiaga\\Downloads\\Proyecto-Final---Progra-3\\Proyecto-Final---Progra-3\\Proyecto_final\\obj\\",
+      "outputPath": "C:\\Users\\Maradiaga\\Desktop\\UAM\\Actuales\\Progra 3\\Proyecto\\Proyecto-Final---Progra-3\\Proyecto_final\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Maradiaga\\AppData\\Roaming\\NuGet\\NuGet.Config",
