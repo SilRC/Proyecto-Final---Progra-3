@@ -94,7 +94,7 @@ namespace Proyecto_final.Controllers
             {
                 return NotFound();
             }
-            ViewData["CuentaId"] = new SelectList(_context.Cuentas, "CuentaId", "CuentaId", ingreso.CuentaId);
+            ViewData["CuentaId"] = new SelectList(_context.Cuentas, "CuentaId", "NombreCuenta", ingreso.CuentaId);
             return View(ingreso);
         }
 

@@ -99,8 +99,8 @@ namespace Proyecto_final.Controllers
             {
                 return NotFound();
             }
-            ViewData["CategoriaId"] = new SelectList(_context.Categorias, "CategoriaId", "CategoriaId", gasto.CategoriaId);
-            ViewData["CuentaId"] = new SelectList(_context.Cuentas, "CuentaId", "CuentaId", gasto.CuentaId);
+            ViewData["CategoriaId"] = new SelectList(_context.Categorias, "CategoriaId", "NombreCategoria", gasto.CategoriaId);
+            ViewData["CuentaId"] = new SelectList(_context.Cuentas, "CuentaId", "NombreCuenta", gasto.CuentaId);
             return View(gasto);
         }
 
@@ -135,8 +135,8 @@ namespace Proyecto_final.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["CategoriaId"] = new SelectList(_context.Categorias, "CategoriaId", "CategoriaId", gasto.CategoriaId);
-            ViewData["CuentaId"] = new SelectList(_context.Cuentas, "CuentaId", "CuentaId", gasto.CuentaId);
+            ViewData["CategoriaId"] = new SelectList(_context.Categorias, "CategoriaId", "NombreCategoria", gasto.CategoriaId);
+            ViewData["CuentaId"] = new SelectList(_context.Cuentas, "CuentaId", "NombreCuenta", gasto.CuentaId);
             return View(gasto);
         }
 
