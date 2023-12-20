@@ -19,18 +19,18 @@ namespace Proyecto_final.Controllers
             _context = context;
         }
 
-        // GET: Gastoes
+        // GET: Gastos
         public async Task<IActionResult> Index()
         {
             // Verificar si el usuario es "admin" basado en la sesión
             if ((string)HttpContext.Session.GetString("admin") == "True")
             {
-                // Si el usuario es "admin", obtén todos los ingresos
+                // Si el usuario es "admin", obtén todos los gastos
                 return View(await _context.Gastos.Include(i => i.Cuenta).ToListAsync());
             }
             else
             {
-                // Si el usuario no es "admin", obtén solo los ingresos asociados al usuario logueado
+                // Si el usuario no es "admin", obtén solo los gastos asociados al usuario logueado
                 int loggedUserId = HttpContext.Session.GetInt32("UserId") ?? 0;
                 var gastosDelUsuario = await _context.Gastos.Include(i => i.Cuenta)
                                                  .Where(i => i.Cuenta.UserId == loggedUserId)
@@ -41,7 +41,7 @@ namespace Proyecto_final.Controllers
             }
         }
 
-        // GET: Gastoes/Details/5
+        // GET: Gastos/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -61,17 +61,16 @@ namespace Proyecto_final.Controllers
             return View(gasto);
         }
 
-        // GET: Gastoes/Create
+        // GET: Gastos/Create
         public IActionResult Create()
         {
-            ViewData["CategoriaId"] = new SelectList(_context.Categorias, "CategoriaId", "CategoriaId");
-            ViewData["CuentaId"] = new SelectList(_context.Cuentas, "CuentaId", "CuentaId");
+            ViewData["CategoriaId"] = new SelectList(_context.Categorias, "CategoriaId", "NombreCategoria");
+            ViewData["CuentaId"] = new SelectList(_context.Cuentas, "CuentaId", "NombreCuenta");
             return View();
         }
 
-        // POST: Gastoes/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        // POST: Gastos/Create
+       
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("GastoId,CuentaId,CategoriaId,Descripcion,Monto,FechaGasto")] Gasto gasto)
@@ -87,7 +86,7 @@ namespace Proyecto_final.Controllers
             return View(gasto);
         }
 
-        // GET: Gastoes/Edit/5
+        // GET: Gastos/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -105,9 +104,8 @@ namespace Proyecto_final.Controllers
             return View(gasto);
         }
 
-        // POST: Gastoes/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        // POST: Gastos/Edit/5
+     
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("GastoId,CuentaId,CategoriaId,Descripcion,Monto,FechaGasto")] Gasto gasto)
@@ -142,7 +140,7 @@ namespace Proyecto_final.Controllers
             return View(gasto);
         }
 
-        // GET: Gastoes/Delete/5
+        // GET: Gastos/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -162,7 +160,7 @@ namespace Proyecto_final.Controllers
             return View(gasto);
         }
 
-        // POST: Gastoes/Delete/5
+        // POST: Gastos/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)

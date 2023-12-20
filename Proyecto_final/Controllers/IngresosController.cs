@@ -18,7 +18,7 @@ namespace Proyecto_final.Controllers
             _context = context;
         }
 
-        // GET: Ingresoes
+        // GET: Ingresos
         public async Task<IActionResult> Index()
         {
             // Verificar si el usuario es "admin" basado en la sesión
@@ -40,7 +40,7 @@ namespace Proyecto_final.Controllers
             }
         }
 
-            // GET: Ingresoes/Details/5
+            // GET: Ingresos/Details/5
             public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -59,16 +59,14 @@ namespace Proyecto_final.Controllers
             return View(ingreso);
         }
 
-        // GET: Ingresoes/Create
+        // GET: Ingresos/Create
         public IActionResult Create()
         {
-            ViewData["CuentaId"] = new SelectList(_context.Cuentas, "CuentaId", "CuentaId");
+            ViewData["CuentaId"] = new SelectList(_context.Cuentas, "CuentaId", "NombreCuenta");
             return View();
         }
 
-        // POST: Ingresoes/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        // POST: Ingresos/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("IngresoId,CuentaId,Descripcion,Monto,FechaIngreso")] Ingreso ingreso)
@@ -83,7 +81,7 @@ namespace Proyecto_final.Controllers
             return View(ingreso);
         }
 
-        // GET: Ingresoes/Edit/5
+        // GET: Ingresos/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -100,9 +98,7 @@ namespace Proyecto_final.Controllers
             return View(ingreso);
         }
 
-        // POST: Ingresoes/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        // POST: Ingresos/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("IngresoId,CuentaId,Descripcion,Monto,FechaIngreso")] Ingreso ingreso)
@@ -136,7 +132,7 @@ namespace Proyecto_final.Controllers
             return View(ingreso);
         }
 
-        // GET: Ingresoes/Delete/5
+        // GET: Ingresos/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -155,7 +151,7 @@ namespace Proyecto_final.Controllers
             return View(ingreso);
         }
 
-        // POST: Ingresoes/Delete/5
+        // POST: Ingresos/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)

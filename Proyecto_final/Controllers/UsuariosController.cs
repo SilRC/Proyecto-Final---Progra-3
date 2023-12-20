@@ -30,14 +30,14 @@ namespace Proyecto_final.Controllers
                 int? userId = HttpContext.Session.GetInt32("UserId");
                 if (!userId.HasValue)
                 {
-                    // Si no hay un UserId en la sesión, redirige a una página de error o maneja el caso adecuadamente.
+                    // Si no hay un UserId en la sesión, redirige a una página de error.
                     return RedirectToAction("Error", "Home");
                 }
 
                 var usuario = await _context.Usuarios.FirstOrDefaultAsync(u => u.UserId == userId.Value);
                 if (usuario == null)
                 {
-                    // Si el usuario no se encuentra en la base de datos, maneja el caso adecuadamente.
+                    // Si el usuario no se encuentra en la base de datos
                     return RedirectToAction("Error", "Home");
                 }
 
@@ -192,17 +192,3 @@ namespace Proyecto_final.Controllers
         }
     }
 }
-
-
-
-
-/*
-            if ((string)HttpContext.Session.GetString("admin") == "True")
-            {
-
-            }
-            else
-            {
-                return RedirectToAction("Index", "Home");
-            }
- */

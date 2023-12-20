@@ -60,7 +60,7 @@ namespace Proyecto_final.Controllers
         // GET: Cuentas/Create
         public IActionResult Create()
         {
-            ViewData["UserId"] = new SelectList(_context.Usuarios, "UserId", "UserId");
+            ViewData["UserId"] = new SelectList(_context.Usuarios, "UserId", "NombreUsuario");
             return View();
         }
 
@@ -99,8 +99,7 @@ namespace Proyecto_final.Controllers
         }
 
         // POST: Cuentas/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+       
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("CuentaId,UserId,NombreCuenta,SaldoInicial,FechaCreacion")] Cuenta cuenta)
@@ -174,15 +173,3 @@ namespace Proyecto_final.Controllers
         }
     }
 }
-
-
-/*
-            if ((string)HttpContext.Session.GetString("admin") == "True")
-            {
-
-            }
-            else
-            {
-                return RedirectToAction("Index", "Home");
-            }
- */

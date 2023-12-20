@@ -47,11 +47,11 @@ namespace Proyecto_final.Controllers
                 var usuario = await _context.Usuarios
                     .FirstOrDefaultAsync(u => u.NombreUsuario == model.NombreUsuario && u.Contrasena == model.Contrasena);
 
-                if (usuario != null)
+                if (usuario != null) //si encuentra usuario en bdd
                 {
                     if (model.NombreUsuario == "admin")
                     {
-                        _httpContextAccessor.HttpContext.Session.SetString("admin", "True");
+                        _httpContextAccessor.HttpContext.Session.SetString("admin", "True"); //variable de sesión true
                     }
                     else
                     {
